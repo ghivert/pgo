@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- Add support for `sslmode` in connection strings.
+- Change SSL from `Bool` to `SslEnabled`, `SslDisabled` and `SslVerify` to match
+  against diverse CA certificates or not.
+
 ## v1.0.0 - 2024-11-11
 
 - Renamed to `pog`.
