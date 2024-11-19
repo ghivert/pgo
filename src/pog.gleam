@@ -204,18 +204,18 @@ pub fn default_config() -> Config {
 /// Parse a database url into configuration that can be used to start a pool.
 pub fn url_config(database_url: String) -> Result(Config, Nil) {
   use uri <- result.then(uri.parse(database_url))
-  use #(userinfo, host, path, port, query) <- result.then(case uri {
+  use #(userinfo, host, path, db_port, query) <- result.then(case uri {
     Uri(
       scheme: Some(scheme),
       userinfo: Some(userinfo),
       host: Some(host),
-      port: Some(port),
-      path:,
-      query:,
+      port: Some(db_port),
+      path: path,
+      query: query,
       ..,
     ) -> {
       case scheme {
-        "postgres" | "postgresql" -> Ok(#(userinfo, host, path, port, query))
+        "postgres" | "postgresql" -> Ok(#(userinfo, host, path, db_port, query))
         _ -> Error(Nil)
       }
     }
@@ -228,12 +228,12 @@ pub fn url_config(database_url: String) -> Result(Config, Nil) {
       Ok(
         Config(
           ..default_config(),
-          host:,
-          port:,
-          database:,
-          user:,
-          password:,
-          ssl:,
+          host: host,
+          port: db_port,
+          database: database,
+          user: user,
+          password: password,
+          ssl: ssl,
         ),
       )
     _ -> Error(Nil)
