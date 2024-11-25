@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.1 - Unreleased
+
+- Add support for timeout in pool configuration as well as queries.
+
 ## v1.0.0 - 2024-11-11
 
 - Renamed to `pog`.
